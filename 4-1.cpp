@@ -17,7 +17,7 @@ int* Merge(int *a, int *b, int n) {
     return rezult;
 }
 
-void build_heap(int *a, int n) {
+void make_heap(int *a, int n) {
 
     for (int i = n/2; i >= 1; --i) {
         for (int j = i; j <= n/2; ) {
@@ -35,7 +35,7 @@ void build_heap(int *a, int n) {
     }
 }
 
-void add_heap(int *a, int n) {
+void pop_heap(int *a, int n) {
 
     std::swap(a[n], a[1]);
 
@@ -51,9 +51,9 @@ void add_heap(int *a, int n) {
 }
 
 void heap_sort(int *a, int n) {
-    build_heap(a-1, n);
+    make_heap(a-1, n);
     for (int i = 0; i < n; ++i)
-        add_heap(a - 1, n - i);
+        pop_heap(a - 1, n - i);
 }
 
 
@@ -97,10 +97,9 @@ int main() {
             i = n;
             }
         }
-        if (i != n)
+        
             heap_sort(b, k);
-        else
-            heap_sort(b, unused);
+        
         a = Merge(a, b, k);
     }
 
@@ -109,7 +108,7 @@ int main() {
 
     delete[] b;
     delete[] a;
-  //  system("PAUSE");
+ //  system("PAUSE");
 
 
     return 0;
